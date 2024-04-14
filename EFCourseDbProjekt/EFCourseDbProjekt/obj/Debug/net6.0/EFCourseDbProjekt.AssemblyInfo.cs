@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EFCourseDbProjekt")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+af6db11c8611126606d17d1b8ec7a61afc19d60c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5cf3c667a1f81fc971b1a2d0a324688cb32f9dab")]
 [assembly: System.Reflection.AssemblyProductAttribute("EFCourseDbProjekt")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EFCourseDbProjekt")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

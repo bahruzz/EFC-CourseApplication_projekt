@@ -12,6 +12,9 @@ namespace Service.Helpers.Enums
         EducationGetAll,
         EducationDelete,
         EducationGetById,
+        EducationUpdate,
+        EducationSearchByName,
+        EducationSortWithCreatedDate,
 
     }
 }
