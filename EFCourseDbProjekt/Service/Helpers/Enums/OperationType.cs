@@ -18,6 +18,7 @@ namespace Service.Helpers.Enums
         EducationGetAllWithGroup,
         GroupCreate,
         GroupGetAll,
+        GroupDelete,
 
     }
 }

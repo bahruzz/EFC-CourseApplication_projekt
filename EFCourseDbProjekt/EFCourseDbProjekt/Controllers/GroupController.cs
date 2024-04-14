@@ -122,6 +122,53 @@ namespace EFCourseDbProjekt.Controllers
 
         }
 
+        public async Task DeleteAsync()
+        {
+            try
+            {
+                var data = await _groupService.GetAllAsync();
+                foreach (var item in data)
+                {
+                    Console.WriteLine("Id-" + item.Id + " Name-" + item.Name + " CreatedDate-" + item.CreatedDate);
+                }
+
+            Id: ConsoleColor.Cyan.WriteConsole("Add id:");
+                string idStr = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(idStr))
+                {
+                    ConsoleColor.Red.WriteConsole("Input can't be empty");
+                    goto Id;
+                }
+                int id;
+                bool isCorrectIdFormat = int.TryParse(idStr, out id);
+                if (isCorrectIdFormat)
+                {
+                    var response = await _groupService.GetByIdAsync(id);
+                    if (response is null)
+                    {
+                        ConsoleColor.Red.WriteConsole(ResponseMessages.DataNotFound);
+                    }
+                    else
+                    {
+                        _groupService.DeleteAsync(response);
+                        ConsoleColor.Green.WriteConsole("Data succesfully deleted");
+                    }
+
+                }
+                else
+                {
+                    ConsoleColor.Red.WriteConsole(ResponseMessages.IncorrectFormat);
+                    goto Id;
+                }
+            }
+            catch (Exception ex)
+            {
+                ConsoleColor.Red.WriteConsole(ex.Message);
+            }
+
+
+        }
+
 
     }
 }
