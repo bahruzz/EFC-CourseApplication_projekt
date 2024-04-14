@@ -260,7 +260,7 @@ namespace EFCourseDbProjekt.Controllers
                     }
                     else
                     {
-                        data.Result.CreatedDate = DateTime.Now;
+                        
                         _educationService.UpdateAsync(data.Result);
                         ConsoleColor.Green.WriteConsole("Data successfully updated");
                     }

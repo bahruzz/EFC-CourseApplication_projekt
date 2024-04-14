@@ -1,5 +1,6 @@
 ﻿using Domain.Models;
 using Service.Helpers.Constants;
+using Service.Helpers.Exceptions;
 using Service.Helpers.Extensions;
 using Service.Services;
 using Service.Services.Interfaces;
@@ -117,7 +118,7 @@ namespace EFCourseDbProjekt.Controllers
             foreach (var item in response)
             {
                 var education = await _educationService.GetByIdAsync(item.EducationId);
-                Console.WriteLine("Group-" + item.Name + " Capacity-" + item.Capacity + " Education-" + education.Name + " CreatedDate-" + item.CreatedDate);
+                Console.WriteLine("Group id-"  +  item.Id +" " +  "Group name-"  +  item.Name +" " +"Capacity-" + item.Capacity +" "+ "Education-" + education.Name + " CreatedDate-" + item.CreatedDate);
             }
 
         }
@@ -168,6 +169,186 @@ namespace EFCourseDbProjekt.Controllers
 
 
         }
+
+        public async Task GetByIdAsync()
+
+        {
+            try
+            {
+            Id: ConsoleColor.Cyan.WriteConsole("Add id:");
+                string idStr = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(idStr))
+                {
+                    ConsoleColor.Red.WriteConsole("Input can't be empty");
+                    goto Id;
+                }
+                int id;
+                bool isCorrectIdFormat = int.TryParse(idStr, out id);
+                if (isCorrectIdFormat)
+                {
+                    var response = await _groupService.GetByIdAsync(id);
+                    if (response is null)
+                    {
+                        ConsoleColor.Red.WriteConsole(ResponseMessages.DataNotFound);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Group name-" + response.Name +" " + "Capacity-" + response.Capacity + " " + " CreatedDate-" + response.CreatedDate);
+                    }
+
+                }
+                else
+                {
+                    ConsoleColor.Red.WriteConsole(ResponseMessages.IncorrectFormat);
+                    goto Id;
+                }
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                ConsoleColor.Red.WriteConsole(ex.Message);
+            }
+
+        }
+
+        public async Task UpdateAsync()
+        {
+            var datas = await _groupService.GetAllAsync();
+            foreach (var item in datas)
+            {
+                Console.WriteLine("Group Id-" + item.Id + "Group Name-" + item.Name + " Education-" + item.Education + " Capacity-" + item.Capacity + " CreatedDate-" + item.CreatedDate);
+            }
+            bool update = true;
+        Id: ConsoleColor.Cyan.WriteConsole("Add id:");
+            string idStr = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(idStr))
+            {
+                ConsoleColor.Red.WriteConsole("Input can't be empty");
+                goto Id;
+            }
+            int id;
+            bool isCorrectIdFormat = int.TryParse(idStr, out id);
+            if (isCorrectIdFormat)
+            {
+                try
+                {
+                    var data = _groupService.GetByIdAsync(id);
+                    
+                    if (data.Result is null)
+                    {
+                        throw new NotFoundException(ResponseMessages.DataNotFound);
+                        
+                    }
+                Group: ConsoleColor.Cyan.WriteConsole("Add Group name ");
+                    string newName = Console.ReadLine();
+                    if (!string.IsNullOrWhiteSpace(newName))
+                    {
+                        var response = await _groupService.SearchByNameAsync(newName);
+                        if (response.Count == 0)
+                        {
+                            if (data.Result.Name.ToLower().Trim() != newName.ToLower().Trim())
+                            {
+                                data.Result.Name = newName;
+                                update = false;
+                            }
+                        }
+                        else
+                        {
+                            ConsoleColor.Red.WriteConsole("This group is exist");
+                            goto Group;
+                        }
+
+                    }
+                Education: ConsoleColor.Cyan.WriteConsole("Add Education");
+                    string newEducation = Console.ReadLine();
+                    if (!string.IsNullOrWhiteSpace(newEducation))
+                    {
+                        var edu = await _educationService.SearchByNameAsync(newEducation);
+                        if (edu.Count != 0)
+                        {
+                            if (data.Result.Education.Name.ToLower().Trim() != newEducation.ToLower().Trim())
+                            {
+                                data.Result.Education.Name = newEducation;
+                                update = false;
+                            }
+                        }
+
+                        else
+                        {
+                            ConsoleColor.Red.WriteConsole("This Education is not Exist");
+                            goto Education;
+                        }
+
+                    }
+                    ConsoleColor.Cyan.WriteConsole("Add capacity");
+                    string capacityStr = Console.ReadLine();
+                    if (!string.IsNullOrWhiteSpace(capacityStr))
+                    {
+                        int capacity;
+                        bool isCorrectCapacityFormat = int.TryParse(capacityStr, out capacity);
+                        if (isCorrectCapacityFormat)
+                        {
+
+                            if (data.Result.Capacity != capacity)
+                            {
+                                data.Result.Capacity = capacity;
+                                update = false;
+                            }
+
+                        }
+                    }
+
+               
+                    else
+                    {
+                      
+                        _groupService.UpdateAsync(data.Result);
+                        ConsoleColor.Green.WriteConsole("Data update succes");
+
+                       
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    ConsoleColor.Red.WriteConsole(ex.Message);
+                   
+                    goto Id;
+                }
+
+            }
+            else
+            {
+                ConsoleColor.Red.WriteConsole(ResponseMessages.IncorrectFormat);
+                goto Id;
+            }
+        }
+
+        public async Task SearchByNameAsync()
+        {
+        Str: ConsoleColor.Cyan.WriteConsole("Enter str");
+            string str = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(str))
+            {
+                ConsoleColor.Red.WriteConsole("Input can't be empty");
+                goto Str;
+            }
+            var data = await _groupService.SearchByNameAsync(str);
+            if (data.Count == 0)
+            {
+                ConsoleColor.Red.WriteConsole(ResponseMessages.DataNotFound);
+                goto Str;
+            }
+            foreach (var item in data)
+            {
+                var education = await _educationService.GetByIdAsync(item.EducationId);
+                Console.WriteLine("Group-" + item.Name + " Education-" + education.Name + " Capacity-" + item.Capacity + " CreatedDate-" + item.CreatedDate);
+            }
+        }
+
 
 
     }

@@ -49,7 +49,15 @@ Operation: string operationStr = Console.ReadLine();
             case (int)OperationType.GroupDelete:
                 await groupController.DeleteAsync();
                 break;
-
+            case (int)OperationType.GroupGetById:
+                await groupController.GetByIdAsync();
+                break;
+            case (int)OperationType.GroupUpdate:
+                await groupController.UpdateAsync();
+                break;
+            case (int)OperationType.GroupSearchByName:
+                await groupController.SearchByNameAsync();
+                break;
 
 
 
@@ -72,5 +80,5 @@ Operation: string operationStr = Console.ReadLine();
 }
 static void GetMenues()
 {
-    ConsoleColor.Cyan.WriteConsole("Choose one operation :  1-Education create, 2- EducationGetAll, 3-EducationDelete, 4-EducationGetById, 5-EducationUpdate,6-EducationSearchByName, 7-EducationSortWithCreatedDate,8-GetAllWithGroupAsync,9-GroupCreate,10-GroupGetAll,11-GroupDelete,12-SearchStudentByNameOrSurname,13-GetAllStudentByAge,14-GetAllStudentByGroupId");
+    ConsoleColor.Cyan.WriteConsole("Choose one operation :  1-Education create, 2- EducationGetAll, 3-EducationDelete, 4-EducationGetById, 5-EducationUpdate,6-EducationSearchByName, 7-EducationSortWithCreatedDate,8-GetAllWithGroupAsync,9-GroupCreate,10-GroupGetAll,11-GroupDelete,12-GroupGetById,13-GroupUpdate,14-GroupSearchByName");
 }

@@ -19,6 +19,9 @@ namespace Service.Helpers.Enums
         GroupCreate,
         GroupGetAll,
         GroupDelete,
+        GroupGetById,
+        GroupUpdate,
+        GroupSearchByName,
 
     }
 }
