@@ -4,6 +4,7 @@ using Service.Helpers.Extensions;
 using Service.Helpers.Enums;
 
 EducationController educationController = new EducationController();
+GroupController groupController = new GroupController();    
 
 while (true)
 {
@@ -36,6 +37,15 @@ Operation: string operationStr = Console.ReadLine();
             case (int)OperationType.EducationSortWithCreatedDate:
                 await educationController.SortWithCreatedDateAsync();
                 break;
+            case (int)OperationType.EducationGetAllWithGroup:
+                await educationController.GetAllWithGroupAsync();
+                break;
+            case (int)OperationType.GroupCreate:
+                await groupController.CreateAsync();
+                break;
+            case (int)OperationType.GroupGetAll:
+                await groupController.GetAllAsync();
+                break;
 
 
 
@@ -59,5 +69,5 @@ Operation: string operationStr = Console.ReadLine();
 }
 static void GetMenues()
 {
-    ConsoleColor.Cyan.WriteConsole("Choose one operation :  1-Education create, 2- EducationGetAll, 3-EducationDelete, 4-EducationGetById, 5-EducationUpdate,6-EducationSearchByName, 7-EducationSortWithCreatedDate,8-Student create,9-StudentGetAll,10-Student delete,11-GetStudentById,12-SearchStudentByNameOrSurname,13-GetAllStudentByAge,14-GetAllStudentByGroupId");
+    ConsoleColor.Cyan.WriteConsole("Choose one operation :  1-Education create, 2- EducationGetAll, 3-EducationDelete, 4-EducationGetById, 5-EducationUpdate,6-EducationSearchByName, 7-EducationSortWithCreatedDate,8-GetAllWithGroupAsync,9-GroupCreate,10-GroupGetAll,11-GetStudentById,12-SearchStudentByNameOrSurname,13-GetAllStudentByAge,14-GetAllStudentByGroupId");
 }

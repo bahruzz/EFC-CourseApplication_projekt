@@ -15,6 +15,9 @@ namespace Service.Helpers.Enums
         EducationUpdate,
         EducationSearchByName,
         EducationSortWithCreatedDate,
+        EducationGetAllWithGroup,
+        GroupCreate,
+        GroupGetAll,
 
     }
 }

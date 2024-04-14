@@ -336,6 +336,18 @@ namespace EFCourseDbProjekt.Controllers
 
         }
 
+        public async Task GetAllWithGroupAsync()
+        {
+            var response = await _educationService.GetEducationWithGroupsAsync();
+
+
+            foreach (var item in response)
+            {
+                string result = item.Education + "-" + string.Join(",", item.Groups);
+                Console.WriteLine(result);
+            }
+
+        }
 
 
 
