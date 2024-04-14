@@ -63,3 +63,4 @@ C:\Users\user\Desktop\Entity_FrameworkCourseDb projekt\EFCourseDbProjekt\EFCours
 C:\Users\user\Desktop\Entity_FrameworkCourseDb projekt\EFCourseDbProjekt\EFCourseDbProjekt\obj\Debug\net6.0\EFCourseDbProjekt.pdb
 C:\Users\user\Desktop\Entity_FrameworkCourseDb projekt\EFCourseDbProjekt\EFCourseDbProjekt\obj\Debug\net6.0\EFCourseDbProjekt.genruntimeconfig.cache
 C:\Users\user\Desktop\Entity_FrameworkCourseDb projekt\EFCourseDbProjekt\EFCourseDbProjekt\obj\Debug\net6.0\ref\EFCourseDbProjekt.dll
+C:\Users\user\Desktop\Entity_FrameworkCourseDb projekt\EFCourseDbProjekt\EFCourseDbProjekt\obj\Debug\net6.0\EFCourseDbProjekt.sourcelink.json

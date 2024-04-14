@@ -12,3 +12,4 @@ C:\Users\user\Desktop\Entity_FrameworkCourseDb projekt\EFCourseDbProjekt\Domain\
 C:\Users\user\Desktop\Entity_FrameworkCourseDb projekt\EFCourseDbProjekt\Domain\obj\Debug\net6.0\Domain.pdb
 C:\Users\user\Desktop\Entity_FrameworkCourseDb projekt\EFCourseDbProjekt\Domain\obj\Debug\net6.0\Domain.genruntimeconfig.cache
 C:\Users\user\Desktop\Entity_FrameworkCourseDb projekt\EFCourseDbProjekt\Domain\obj\Debug\net6.0\ref\Domain.dll
+C:\Users\user\Desktop\Entity_FrameworkCourseDb projekt\EFCourseDbProjekt\Domain\obj\Debug\net6.0\Domain.sourcelink.json
