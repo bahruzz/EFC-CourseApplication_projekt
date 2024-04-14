@@ -35,39 +35,39 @@ namespace Service.Services
             await _groupRepository.DeleteAsync(entity);
         }
 
-        public Task<List<Group>> GetAllAsync()
+        public async Task<List<Group>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _groupRepository.GetAllAsync();
         }
 
-        public Task<List<GroupWithEducationDto>> GetAllWithEducationAsync()
+        public async Task<List<GroupWithEducationDto>> GetAllWithEducationAsync()
         {
-            throw new NotImplementedException();
+            return await _groupRepository.GetAllWithEducationAsync();
         }
 
-        public Task<Group> GetByIdAsync(int id)
+        public async Task<Group> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _groupRepository.GetByIdAsync(id);
         }
 
-        public Task<List<Group>> GetGroupByEducationIdAsync(int id)
+        public async Task<List<Group>> GetGroupByEducationIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _groupRepository.GetGroupByEducationIdAsync(id);
         }
 
-        public Task<List<Group>> SearchByNameAsync(string str)
+        public async Task<List<Group>> SearchByNameAsync(string str)
         {
-            throw new NotImplementedException();
+            return await _groupRepository.SearchByNameAsync(str);
         }
 
-        public Task<List<Group>> SortWithCapacityAsync(string text)
+        public async Task<List<Group>> SortWithCapacityAsync(string text)
         {
-            throw new NotImplementedException();
+            return await _groupRepository.SortWithCapacityAsync(text);
         }
 
-        public Task UpdateAsync(Group entity)
+        public async Task UpdateAsync(Group entity)
         {
-            throw new NotImplementedException();
+            await _groupRepository.UpdateAsync(entity);
         }
 
     }
