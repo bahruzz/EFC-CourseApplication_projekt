@@ -1,4 +1,5 @@
 ﻿using Domain.Models;
+using Service.Helpers.Constants;
 using Service.Helpers.Extensions;
 using Service.Services;
 using Service.Services.Interfaces;
@@ -81,5 +82,125 @@ namespace EFCourseDbProjekt.Controllers
                 }
             }
         }
+
+        public async Task GetAllAsync()
+        {
+            var response = await _educationService.GetAllAsync();
+            if (response.Count == 0)
+            {
+                ConsoleColor.Red.WriteConsole(ResponseMessages.DataNotFound);
+                return;
+            }
+            else
+            {
+
+
+                foreach (var item in response)
+                {
+                    string data = $"Education id : {item.Id},  Education name : {item.Name}     ,     Education color : {item.Color}    ,     CreatedDate:{item.CreatedDate}";
+                    Console.WriteLine(data);
+                }
+            }
+        }
+
+        public async Task DeleteAsync()
+        {
+            try
+            {
+                var data = await _educationService.GetAllAsync();
+                foreach (var item in data)
+                {
+                    Console.WriteLine("Id-" + item.Id + " Name-" + item.Name + " CreatedDate-" + item.CreatedDate);
+                }
+
+            Id: Console.WriteLine("Add id:");
+                string idStr = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(idStr))
+                {
+                    ConsoleColor.Red.WriteConsole("Input can't be empty");
+                    goto Id;
+                }
+                int id;
+                bool isCorrectIdFormat = int.TryParse(idStr, out id);
+                if (isCorrectIdFormat)
+                {
+                    var response = await _educationService.GetByIdAsync(id);
+                    if (response is null)
+                    {
+                        ConsoleColor.Red.WriteConsole(ResponseMessages.DataNotFound);
+                    }
+                    else
+                    {
+                        _educationService.DeleteAsync(response);
+                        ConsoleColor.Green.WriteConsole("Data succesfully deleted");
+                    }
+
+                }
+                else
+                {
+                    ConsoleColor.Red.WriteConsole(ResponseMessages.IncorrectFormat);
+                    goto Id;
+                }
+            }
+            catch (Exception ex)
+            {
+                ConsoleColor.Red.WriteConsole(ex.Message);
+            }
+
+
+        }
+
+        public async Task GetByIdAsync()
+
+        {
+            try
+            {
+            Id: Console.WriteLine("Add id:");
+                string idStr = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(idStr))
+                {
+                    ConsoleColor.Red.WriteConsole("Input can't be empty");
+                    goto Id;
+                }
+                int id;
+                bool isCorrectIdFormat = int.TryParse(idStr, out id);
+                if (isCorrectIdFormat)
+                {
+                    var response = await _educationService.GetByIdAsync(id);
+                    if (response is null)
+                    {
+                        ConsoleColor.Red.WriteConsole(ResponseMessages.DataNotFound);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Education-" + response.Name + " Color-" + response.Color + " CreatedDate-" + response.CreatedDate);
+                    }
+
+                }
+                else
+                {
+                    ConsoleColor.Red.WriteConsole(ResponseMessages.IncorrectFormat);
+                    goto Id;
+                }
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                ConsoleColor.Red.WriteConsole(ex.Message);
+            }
+        
+        }
+
+
+
+
     }
+ 
+
+
+    
+
 }
