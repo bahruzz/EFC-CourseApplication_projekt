@@ -59,5 +59,10 @@ namespace Service.Services
         {
             await _educationRepository.UpdateAsync(entity);
         }
+
+        public async Task<Education> GetByNameAsync(string name)
+        {
+            return await _educationRepository.GetByNameAsync(name);
+        }
     }
 }

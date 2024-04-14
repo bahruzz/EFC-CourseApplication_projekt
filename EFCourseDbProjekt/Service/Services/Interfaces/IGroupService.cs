@@ -21,5 +21,6 @@ namespace Service.Services.Interfaces
 
         Task<List<Group>> SortWithCapacityAsync(string text);
         Task<List<Group>> GetGroupByEducationIdAsync(int id);
+        Task<Group> GetByNameAsync(string name);
     }
 }

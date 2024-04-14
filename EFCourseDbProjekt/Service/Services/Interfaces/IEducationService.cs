@@ -20,5 +20,6 @@ namespace Service.Services.Interfaces
         Task<List<Education>> SortWithCreatedDateAsync(string text);
 
         Task<List<Education>> SearchByNameAsync( string str);
+        Task<Education> GetByNameAsync(string name);
     }
 }

@@ -58,6 +58,18 @@ Operation: string operationStr = Console.ReadLine();
             case (int)OperationType.GroupSearchByName:
                 await groupController.SearchByNameAsync();
                 break;
+            case (int)OperationType.GetAllGroupWithEducationId:
+                await groupController.GetAllGroupWithEducationIdAsync();
+                break;
+            case (int)OperationType.GroupSortWithCapacity:
+                await groupController.SortWithCapacityAsync();
+                break;
+            case (int)OperationType.FilterByEducationName:
+                await groupController.FilterByEducationNameAsync();
+                break;
+            default:
+                ConsoleColor.Red.WriteConsole("Operation is wrong, please choose again");
+                goto Operation;
 
 
 
@@ -80,5 +92,5 @@ Operation: string operationStr = Console.ReadLine();
 }
 static void GetMenues()
 {
-    ConsoleColor.Cyan.WriteConsole("Choose one operation :  1-Education create, 2- EducationGetAll, 3-EducationDelete, 4-EducationGetById, 5-EducationUpdate,6-EducationSearchByName, 7-EducationSortWithCreatedDate,8-GetAllWithGroupAsync,9-GroupCreate,10-GroupGetAll,11-GroupDelete,12-GroupGetById,13-GroupUpdate,14-GroupSearchByName");
+    ConsoleColor.Cyan.WriteConsole("Choose one operation :  1-Education create, 2- EducationGetAll, 3-EducationDelete, 4-EducationGetById, 5-EducationUpdate,6-EducationSearchByName, 7-EducationSortWithCreatedDate,8-GetAllWithGroupAsync,9-GroupCreate,10-GroupGetAll,11-GroupDelete,12-GroupGetById,13-GroupUpdate,14-GroupSearchByName,15-GetAllGroupWithEducationId,16-GroupSortWithCapacity,17-FilterByEducationName");
 }

@@ -70,5 +70,10 @@ namespace Service.Services
             await _groupRepository.UpdateAsync(entity);
         }
 
+        public async Task<Group> GetByNameAsync(string name)
+        {
+            return await _groupRepository.GetByNameAsync(name);
+        }
+
     }
 }

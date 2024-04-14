@@ -16,5 +16,7 @@ namespace Repository.Repositories.Interfaces
         Task<List<Group>> GetGroupByEducationIdAsync(int id);
 
         Task<List<GroupWithEducationDto>> GetAllWithEducationAsync();
+
+        Task<Group> GetByNameAsync(string name);
     }
 }

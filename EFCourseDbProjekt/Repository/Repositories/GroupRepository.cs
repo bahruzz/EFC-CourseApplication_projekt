@@ -56,6 +56,11 @@ namespace Repository.Repositories
                 throw new Exception("Incorrect Operation");
             }
         }
+
+        public async Task<Group> GetByNameAsync(string name)
+        {
+            return await _appDbContext.Groups.FirstOrDefaultAsync(m => m.Name == name);
+        }
     }
 
 }

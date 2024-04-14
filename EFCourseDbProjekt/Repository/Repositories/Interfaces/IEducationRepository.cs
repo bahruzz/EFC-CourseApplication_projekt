@@ -15,5 +15,6 @@ namespace Repository.Repositories.Interfaces
         Task<List<Education>> SortWithCreatedDateAsync(string text);
 
         Task<List<EducationWithGroupsDto>> GetAllWithGroupAsync();
+        Task<Education> GetByNameAsync(string name);
     }
 }
